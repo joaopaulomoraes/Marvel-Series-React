@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Collapse,
   Navbar,
@@ -10,31 +10,46 @@ import {
 } from "reactstrap"
 
 
-const Header = () => {
-  return (
-    <div className="header">
-      <Navbar
-        color="light" 
-        light
-        expand="md"
-      >
-        <NavbarBrand href="/">Marvel Series</NavbarBrand>
-        <NavbarToggler />
-        <Collapse navbar>
-          <Nav
-            className="ml-auto"
+class Header extends Component {
+  state = {
+    isOpen: false
+  }
+
+  handleToogle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
+
+  render() {
+    return (
+      <div className="header">
+        <Navbar
+          color="light" 
+          light
+          expand="md"
+        >
+          <NavbarBrand href="/">Marvel Series</NavbarBrand>
+          <NavbarToggler onClick={this.handleToogle} />
+          <Collapse
+            isOpen={this.state.isOpen}
             navbar
           >
-            <NavItem>
-              <NavLink href="/series">
-                Series
-              </NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
-  )
+            <Nav
+              className="ml-auto"
+              navbar
+            >
+              <NavItem>
+                <NavLink href="/series">
+                  Series
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    )
+  }
 }
 
 export default Header
