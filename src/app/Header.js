@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import {
   Collapse,
   Navbar,
@@ -10,7 +10,7 @@ import {
 } from "reactstrap"
 
 
-const Header = props => {
+const Header = () => {
   return (
     <div className="header">
       <Navbar
