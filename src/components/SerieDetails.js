@@ -19,6 +19,10 @@ class SerieDetails extends Component {
     loading: true
   }
 
+  /**
+   * @description Persist the data in the route: series/:id
+   * @memberof App
+   */
   async componentDidMount() {
     /*
       Destructing object to get only
