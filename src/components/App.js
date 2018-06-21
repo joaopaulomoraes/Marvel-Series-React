@@ -7,6 +7,7 @@ import {
 import Header from '../app/Header'
 import SeriesList from './SeriesList'
 import SerieDetails from './SerieDetails'
+import * as MarvelAPI from '../api'
 
 const PageNotFound = ({ location }) => (
   <div className="not-found">
@@ -19,6 +20,25 @@ class App extends Component {
     series: [],
     loading: true,
     error: false
+  }
+
+  async componentDidMount() {
+    await MarvelAPI.getSeries()
+      .then(response => {
+
+        /*
+        Destructing object to get only
+        the data needed for the component
+        provided by the API
+        */
+        const { data: { data: { results } } } = response
+
+        this.setState({
+          series: results,
+          loading: false
+        })
+      })
+      .catch( () => this.setState({ error: true }) )
   }
 
   render() {
