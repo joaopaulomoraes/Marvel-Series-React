@@ -8,6 +8,12 @@ import Header from '../app/Header'
 import SeriesList from './SeriesList'
 import SerieDetails from './SerieDetails'
 
+const PageNotFound = ({ location }) => (
+  <div className="not-found">
+    <h5>Page <code>{location.pathname}</code> not found</h5>
+  </div>
+)
+
 class App extends Component {
   render() {
     return (
@@ -19,6 +25,7 @@ class App extends Component {
               <Route exact path="/" component={SeriesList} />
               <Route exact path="/series/:title" component={SerieDetails} />
               <Route path="/series" component={SeriesList} />
+              <Route component={PageNotFound} />
             </Switch>
           </div>
         </Router>
