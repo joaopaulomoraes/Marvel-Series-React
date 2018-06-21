@@ -16,8 +16,7 @@ import SerieListItem from './SerieListItem'
 class SerieDetails extends Component {
   state = {
     serie: [],
-    loading: true,
-    error: false
+    loading: true
   }
 
   async componentDidMount() {
@@ -37,7 +36,6 @@ class SerieDetails extends Component {
         loading: false
       })
     })
-    .catch( () => this.setState({ error: true }) )
   }
 
   render() {
