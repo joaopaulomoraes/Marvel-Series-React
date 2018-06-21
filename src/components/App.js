@@ -10,6 +10,7 @@ import SeriesList from './SeriesList'
 import SerieDetails from './SerieDetails'
 import * as MarvelAPI from '../api'
 import Loading from '../app/Loading'
+import Footer from '../app/Footer'
 
 const PageNotFound = ({ location }) => (
   <div className="not-found">
@@ -72,6 +73,7 @@ class App extends Component {
             </Switch>
           </Router>
         </Container>
+        <Footer />
       </div>
     )
   }
