@@ -1,7 +1,7 @@
 # Marvel Series API
 
 A React project to consume Marvel API series.
-**Demo**: [marvel-series-react.surge.sh](marvel-series-react.surge.sh) 
+**Demo**: [https://marvel-series-react-sryipltpxq.now.sh](https://marvel-series-react-sryipltpxq.now.sh) 
 
 ## Getting Started
 
