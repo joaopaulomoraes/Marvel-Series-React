@@ -13,11 +13,11 @@ import {
  
 const SeriesList = props => {
   const { series } = props
-
+  
   const serieDetails = title => {
-    return title.toLowerCase()
+    return `/series/${title.toLowerCase()
     .replace(/ /g,'-')
-    .replace(/[^\w-]+/g,'')
+    .replace(/[^\w-]+/g,'')}`
   }
 
   return (
@@ -37,7 +37,11 @@ const SeriesList = props => {
             <CardText>
               {serie.description || 'No description.'}
             </CardText>
-            <Link to={serieDetails(serie.title)}>
+            <Link to={{
+              pathname: serieDetails(serie.title),
+              id: serie.id,
+              title: serie.title
+            }}>
               <Button>Details</Button>
             </Link>
           </CardBody>
