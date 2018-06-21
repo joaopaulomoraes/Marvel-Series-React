@@ -4,6 +4,7 @@ import {
   Route,
   Switch
 } from "react-router-dom"
+import { Container } from 'reactstrap'
 import Header from '../app/Header'
 import SeriesList from './SeriesList'
 import SerieDetails from './SerieDetails'
@@ -42,7 +43,10 @@ class App extends Component {
   }
 
   render() {
-    const { loading } = this.state
+    const {
+      loading,
+      series
+    } = this.state
 
     if (loading) {
       return <Loading />
@@ -51,16 +55,16 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <Router>
-          <div className="routes">
+        <Container>
+          <Router>
             <Switch>
-              <Route exact path="/" component={SeriesList} />
+              <Route exact path="/" component={() => <SeriesList series={series} />} />
               <Route exact path="/series/:title" component={SerieDetails} />
-              <Route path="/series" component={SeriesList} />
+              <Route path="/series" component={() => <SeriesList series={series} />} />
               <Route component={PageNotFound} />
             </Switch>
-          </div>
-        </Router>
+          </Router>
+        </Container>
       </div>
     )
   }
