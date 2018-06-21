@@ -33,6 +33,10 @@ class App extends Component {
     error: false
   }
 
+  /**
+   * @description Persist the data in the route: series until the asynchronous obtaining of the data
+   * @memberof App
+   */
   async componentDidMount() {
     await MarvelAPI.getSeries()
       .then(response => {
