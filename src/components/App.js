@@ -17,6 +17,13 @@ const PageNotFound = ({ location }) => (
   </div>
 )
 
+const styles = {
+  container: {
+    paddingTop: 40,
+    paddingBottom: 80
+  }
+}
+
 class App extends Component {
   state = {
     series: [],
@@ -55,7 +62,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <Container>
+        <Container style={styles.container}>
           <Router>
             <Switch>
               <Route exact path="/" component={() => <SeriesList series={series} />} />
