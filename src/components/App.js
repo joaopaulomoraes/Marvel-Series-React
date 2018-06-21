@@ -66,7 +66,7 @@ class App extends Component {
           <Router>
             <Switch>
               <Route exact path="/" component={() => <SeriesList series={series} />} />
-              <Route exact path="/series/:title" component={SerieDetails} />
+              <Route exact path="/series/:title/:id" component={SerieDetails} />
               <Route path="/series" component={() => <SeriesList series={series} />} />
               <Route component={PageNotFound} />
             </Switch>
