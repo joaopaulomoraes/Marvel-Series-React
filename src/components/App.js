@@ -11,6 +11,7 @@ import SerieDetails from './SerieDetails'
 import * as MarvelAPI from '../api'
 import Loading from '../app/Loading'
 import Footer from '../app/Footer'
+import Error from './Error'
 
 const PageNotFound = ({ location }) => (
   <div className="not-found">
@@ -47,34 +48,42 @@ class App extends Component {
           loading: false
         })
       })
-      .catch( () => this.setState({ error: true }) )
+      .catch(() =>
+        this.setState({
+          error: true,
+          loading: false
+        })
+      )
   }
 
   render() {
     const {
       loading,
+      error,
       series
     } = this.state
 
     if (loading) {
       return <Loading />
     }
-
+    
     return (
-      <div className="app">
-        <Header />
-        <Container style={styles.container}>
-          <Router>
-            <Switch>
-              <Route exact path="/" component={() => <SeriesList series={series} />} />
-              <Route exact path="/series/:title/:id" component={SerieDetails} />
-              <Route path="/series" component={() => <SeriesList series={series} />} />
-              <Route component={PageNotFound} />
-            </Switch>
-          </Router>
-        </Container>
-        <Footer />
-      </div>
+      !error ? (
+        <div className="app">
+          <Header />
+            <Container style={styles.container}>
+              <Router>
+                <Switch>
+                  <Route exact path="/" component={() => <SeriesList series={series} />} />
+                  <Route exact path="/series/:title/:id" component={SerieDetails} />
+                  <Route path="/series" component={() => <SeriesList series={series} />} />
+                  <Route component={PageNotFound} />
+                </Switch>
+              </Router>
+            </Container>
+          <Footer />
+        </div>
+      ) : <Error />
     )
   }
 }
