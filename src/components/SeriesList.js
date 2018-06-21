@@ -37,11 +37,7 @@ const SeriesList = props => {
             <CardText>
               {serie.description || 'No description.'}
             </CardText>
-            <Link to={{
-              pathname: serieDetails(serie.title),
-              id: serie.id,
-              title: serie.title
-            }}>
+            <Link to={`${serieDetails(serie.title)}/${serie.id}`}>
               <Button>Details</Button>
             </Link>
           </CardBody>
