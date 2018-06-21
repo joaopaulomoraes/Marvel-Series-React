@@ -10,7 +10,7 @@ const SeriesList = props => {
 }
 
 SeriesList.propTypes = {
-  series: PropTypes.object.isRequired
+  series: PropTypes.array.isRequired
 }
 
 export default SeriesList
