@@ -11,10 +11,12 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "md5": "^2.2.1",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-spinkit": "^3.0.0",
     "reactstrap": "^6.1.0"
   },
   "scripts": {
