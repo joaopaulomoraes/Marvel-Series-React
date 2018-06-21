@@ -14,6 +14,12 @@ import {
 const SeriesList = props => {
   const { series } = props
   
+  /**
+   * @description Converts title to slug
+   * @param title Serie title
+   * @return Sluged title to url
+   * @memberof MarvelAPI
+   */
   const serieDetails = title => {
     return `/series/${title.toLowerCase()
     .replace(/ /g,'-')
