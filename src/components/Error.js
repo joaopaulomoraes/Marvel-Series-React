@@ -9,7 +9,13 @@ const Error = () => {
   return (
     <div style={error}>
       <Alert color="danger">
-        Error to load data from API. 😅
+        Error to load data from API.
+        <span
+          role="img"
+          aria-label="Oh no!"
+        >
+          😅
+        </span>
       </Alert>
     </div>
   )
