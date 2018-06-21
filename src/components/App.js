@@ -15,6 +15,12 @@ const PageNotFound = ({ location }) => (
 )
 
 class App extends Component {
+  state = {
+    series: [],
+    loading: true,
+    error: false
+  }
+
   render() {
     return (
       <div className="app">
