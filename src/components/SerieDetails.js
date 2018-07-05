@@ -10,12 +10,12 @@ import {
   Badge
 } from 'reactstrap'
 import Loading from '../app/Loading'
-import * as MarvelAPI from '../api'
 import SerieListItem from './SerieListItem'
+import { connect } from 'react-redux'
+import { getSerie } from '../actions'
 
 class SerieDetails extends Component {
   state = {
-    serie: [],
     loading: true
   }
 
@@ -31,22 +31,13 @@ class SerieDetails extends Component {
       */
     const { match: { params: { id } } } = this.props
 
-    await MarvelAPI.getSerie(id)
-    .then(response => {
-      const { data: { data: { results } } } = response
-
-      this.setState({
-        serie: results,
-        loading: false
-      })
-    })
+    await this.props.getSerie(id)
+      .then(this.setState({ loading: false }))
   }
 
   render() {
-    const {
-      loading,
-      serie
-    } = this.state
+    const { loading } = this.state
+    const { serie } = this.props
 
     if (loading) {
       return <Loading />
@@ -117,4 +108,17 @@ class SerieDetails extends Component {
   }
 }
 
-export default SerieDetails
+const mapStateToProps = ({ serie }) => {
+  return {
+    serie
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  getSerie: id => dispatch(getSerie(id))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SerieDetails)

@@ -8,10 +8,11 @@ import { Container } from 'reactstrap'
 import Header from '../app/Header'
 import SeriesList from './SeriesList'
 import SerieDetails from './SerieDetails'
-import * as MarvelAPI from '../api'
 import Loading from '../app/Loading'
 import Footer from '../app/Footer'
 import Error from './Error'
+import { connect } from 'react-redux'
+import { getSeries } from '../actions'
 
 const PageNotFound = ({ location }) => (
   <div className="not-found">
@@ -38,20 +39,10 @@ class App extends Component {
    * @memberof App
    */
   async componentDidMount() {
-    await MarvelAPI.getSeries()
-      .then(response => {
-        /*
-        Destructing object to get only
-        the data needed for the component
-        provided by the API
-        */
-        const { data: { data: { results } } } = response
-
-        this.setState({
-          series: results,
-          loading: false
-        })
-      })
+    await this.props.getSeries()
+      .then(this.setState({
+        loading: false 
+      }))
       .catch(() =>
         this.setState({
           error: true
@@ -63,8 +54,9 @@ class App extends Component {
     const {
       loading,
       error,
-      series
     } = this.state
+
+    const { series } = this.props
 
     if (loading) {
       return <Loading />
@@ -77,9 +69,9 @@ class App extends Component {
             <Container style={styles.container}>
               <Router>
                 <Switch>
-                  <Route exact path="/" component={() => <SeriesList series={series} />} />
+                  <Route exact path="/" component={() => <SeriesList series={series ? series : []} />} />
                   <Route exact path="/series/:title/:id" component={SerieDetails} />
-                  <Route path="/series" component={() => <SeriesList series={series} />} />
+                  <Route path="/series" component={() => <SeriesList series={series ? series : []} />} />
                   <Route component={PageNotFound} />
                 </Switch>
               </Router>
@@ -91,4 +83,17 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = ({ series }) => {
+  return {
+    series
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  getSeries: () => dispatch(getSeries())
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
