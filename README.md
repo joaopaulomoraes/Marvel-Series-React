@@ -42,6 +42,10 @@ Install dependencies and serve with hot reload at http://localhost:3000.
 - [prop-types](https://github.com/facebook/prop-types)
 - [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 - [react-spinkit](https://github.com/KyleAMathews/react-spinkit)
+- [rect-redux](https://github.com/reduxjs/react-redux)
+- [redux](https://github.com/reduxjs/redux)
+- [redux-logger](https://github.com/evgenyrodionov/redux-logger)
+- [redux-thunk](https://github.com/reduxjs/redux-thunk)
 
 ## License
 
